@@ -20,7 +20,7 @@ class admincmd:
         else:
             await self.bot.say("No. You do not have permission to stop me {}.".format(ctx.message.author.mention))
             print("SOMEONE TRIED TO USE A FORBIDDEN COMMAND!!! {0.name} attempted to stop me in {0.server}!".format(ctx.message.author))
-            return#think thats it
+            return
 
 def setup(bot):
     bot.add_cog(admincmd(bot))

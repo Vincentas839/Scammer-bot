@@ -18,17 +18,17 @@ client = discord.Client()
 cmd_dir = "commands"
 
 if __name__ == "__main__":
-    for extension in [f.replace('.py', '') for f in listdir(cmd_dir) if isfile(join(cmd_dir, f))]:
-        try:
-            bot.load_extension(cmd_dir + "." + extension)
-        except Exception as e:
-            print(f'Failed to load extension {extension}.')
-            traceback.print_exc()
+	for extension in [f.replace('.py', '') for f in listdir(cmd_dir) if isfile(join(cmd_dir, f))]:
+		try:
+			bot.load_extension(cmd_dir + "." + extension)
+		except Exception as e:
+			print(f'Failed to load extension {extension}.')
+			traceback.print_exc()
 
 @bot.command(pass_context=True)
 async def invite(ctx):
-    id = bot.id
-    await self.bot.say("**Invite me here :smirk:\nhttps://discordapp.com/oauth2/authorize?client_id={}&scope=bot&permissions=388161**".format(id))
+	id = bot.id
+	await self.bot.say("**Invite me here :smirk:\nhttps://discordapp.com/oauth2/authorize?client_id={}&scope=bot&permissions=388161**".format(id))
 
 @bot.event
 async def on_command_error(error, ctx):
@@ -56,12 +56,17 @@ async def on_command_error(error, ctx):
 	await bot.send_message(ctx.message.channel, embed=error)
 	return
 
-
 @bot.event
 async def on_ready():
 	print('Logged in as')
 	print(bot.user.name)
 	print(bot.user.id)
 	print('-'*18)
+
+@bot.event
+async def on_message(message):
+	if message.server is None and message.author != bot.user:
+		print('Got DM from {} that says: {}'.format(message.author,message.content))
+	await bot.process_commands(message)
 
 bot.run(botkey.getToken())
