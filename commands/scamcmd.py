@@ -1,6 +1,10 @@
 import discord
 from discord.ext import commands
-import regex, re
+import random
+import time
+import regex
+import re
+import datetime
 
 class scamcmd:
 
@@ -27,30 +31,35 @@ class scamcmd:
 		if len(number) == 0:
 			await self.bot.say('No number submitted. Please add a number')
 			return
+			print("{}, {}".format(len(number), number))
 		if len(number) == 14:
 			if re.match(r'18[0-8]{2}-[0-9]{3}-[0-9]{4}',number) == None:
 				print('Error')
 				await self.bot.say('Sorry, that number does not match our filter, if this is a scam number, please dm <@341928732602269698> to improve the filter.')
 				return
 		else:
+			print('MATCH!')
 		if len(number) == 13:
 			if re.match(r'8[0-8]{2}-[0-9]{3}-[0-9]{4}',number) == None:
 				print('Error')
 				await self.bot.say('Sorry, that number does not match our filter, if this is a scam number, please dm <@341928732602269698> to improve the filter.')
 				return
 			else:
+				print('MATCH!')
 		if len(number) == 11:
 			if re.match(r'18[0-8]{2}[0-9]{3}[0-9]{4}',number) == None:
 				print('Error')
 				await self.bot.say('Sorry, that number does not match our filter, if this is a scam number, please dm <@341928732602269698> to improve the filter.')
 				return
 			else:
+				print('MATCH!')
 		if len(number) == 10:
 			if re.match(r'8[0-8]{2}[0-9]{7}',number) == None:
 				print('Error')
 				await self.bot.say('Sorry, that number does not match our filter, if this is a scam number, please dm <@341928732602269698> to improve the filter.')
 				return
 			else:
+				print('MATCH!')
 		else:
 			await self.bot.say("Hmmm, not the right length, sorry.")
 			return
