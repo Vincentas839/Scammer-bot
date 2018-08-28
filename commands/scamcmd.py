@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 import random
 import time
-import regex
 import re
 import datetime
 
@@ -27,7 +26,7 @@ class scamcmd:
 	@commands.command(pass_context=True)
 	async def submit(self, ctx):
 		await self.bot.delete_message(ctx.message)
-		if ctx.message.server != None:
+		if ctx.message.server == None:
 			await self.bot.say('Sorry, please do these in DMs (It\'s to protect scambaiting servers)')
 			return
 		number = ctx.message.content[8:]
@@ -35,23 +34,23 @@ class scamcmd:
 			await self.bot.say('No number submitted. Please add a number')
 			return
 		if len(number) == 14:
-			if re.match(r'18[0-8]{2}-[0-9]{3}-[0-9]{4}',number) == None:
-				print('Error')
+			pattern = re.compile('18[0-8]{2}-[0-9]{3}-[0-9]{4}')
+			if re.match(pattern,number) == None:
 				await self.bot.say('Sorry, that number does not match our filter, if this is a scam number, please dm <@341928732602269698> to improve the filter.')
 				return
 		if len(number) == 13:
-			if re.match(r'8[0-8]{2}-[0-9]{3}-[0-9]{4}',number) == None:
-				print('Error')
+			pattern = re.compile('8[0-8]{2}-[0-9]{3}-[0-9]{4}')
+			if re.match(pattern,number) == None:
 				await self.bot.say('Sorry, that number does not match our filter, if this is a scam number, please dm <@341928732602269698> to improve the filter.')
 				return
 		if len(number) == 11:
-			if re.match(r'18[0-8]{2}[0-9]{3}[0-9]{4}',number) == None:
-				print('Error')
+			pattern = re.compile('18[0-8]{2}[0-9]{3}[0-9]{4}')
+			if re.match(pattern,number) == None:
 				await self.bot.say('Sorry, that number does not match our filter, if this is a scam number, please dm <@341928732602269698> to improve the filter.')
 				return
 		if len(number) == 10:
-			if re.match(r'8[0-8]{2}[0-9]{7}',number) == None:
-				print('Error')
+			pattern = re.compile('8[0-8]{2}[0-9]{7}')
+			if re.match(pattern,number) == None:
 				await self.bot.say('Sorry, that number does not match our filter, if this is a scam number, please dm <@341928732602269698> to improve the filter.')
 				return
 		else:

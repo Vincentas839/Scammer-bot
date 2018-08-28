@@ -3,7 +3,6 @@ import discord
 from discord.ext import commands
 import random
 import time
-import regex
 import re
 import datetime
 import botkey
@@ -22,7 +21,7 @@ if __name__ == "__main__":
 		try:
 			bot.load_extension(cmd_dir + "." + extension)
 		except Exception as e:
-			print(f'Failed to load extension {extension}.')
+			print('Failed to load extension {extension}')
 			traceback.print_exc()
 
 @bot.command(pass_context=True)
