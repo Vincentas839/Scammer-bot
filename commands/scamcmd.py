@@ -26,8 +26,11 @@ class scamcmd:
 
 	@commands.command(pass_context=True)
 	async def submit(self, ctx):
-		number = ctx.message.content[8:]
 		await self.bot.delete_message(ctx.message)
+		if ctx.message.server != None:
+			await self.bot.say('Sorry, please do these in DMs (It\'s to protect scambaiting servers)')
+			return
+		number = ctx.message.content[8:]
 		if len(number) == 0:
 			await self.bot.say('No number submitted. Please add a number')
 			return
