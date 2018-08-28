@@ -7,7 +7,8 @@ import regex
 import re
 import datetime
 import botkey
-import admincmd
+from os import listdir
+from os.path import isfile, join
 
 description = '''This bot is built to serve as a number bot that will be able to manage numbers for scambaiting communities'''
 bot = commands.Bot(command_prefix='=', description=description)
