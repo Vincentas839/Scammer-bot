@@ -6,6 +6,8 @@ import time
 import regex
 import re
 import datetime
+import botkey
+import admincmd
 
 description = '''This bot is built to serve as a number bot that will be able to manage numbers for scambaiting communities'''
 bot = commands.Bot(command_prefix='=', description=description)
@@ -16,12 +18,17 @@ async def number(ctx):
 	Scamlist = open('Scamlist.lst', 'r')
 	Numbers = Scamlist.read().splitlines()
 	print(Numbers)
+	#TODO: CHANGE TO DM
+	random.seed()
+	Numbers[random.randint]
+
 
 @bot.command(pass_context=True)
 async def submit(ctx):
 	number = ctx.message.content[8:]
 	if len(number) == 0:
 		await bot.say('No number submitted. Please add a number')
+		return	
 	print("{}, {}".format(len(number), number))
 	if len(number) == 14:
 		if re.match(r'18[0-8]{2}-[0-9]{3}-[0-9]{4}',number) == None:
@@ -83,9 +90,6 @@ async def help(ctx):
 	help.add_field(name="Report", value="Reports a number as not working", inline=True)
 	#help.add_field(name="", value="", inline=True)
 	await bot.send_message(ctx.message.channel, embed=help)
-
-import botkey
-import admincmd
 
 import discord
 from discord.ext import commands
