@@ -13,6 +13,17 @@ description = '''This bot is built to serve as a number bot that will be able to
 bot = commands.Bot(command_prefix='=', description=description)
 client = discord.Client()
 
+cmd_dir = "commands"
+
+if __name__ == "__main__":
+    for extension in [f.replace('.py', '') for f in listdir(cmd_dir) if isfile(join(cmd_dir, f))]:
+        try:
+            bot.load_extension(cmd_dir + "." + extension)
+        except Exception as e:
+            print(f'Failed to load extension {extension}.')
+            traceback.print_exc()
+
+
 @bot.command(pass_context=True)
 async def number(ctx):
 	Scamlist = open('Scamlist.lst', 'r')
