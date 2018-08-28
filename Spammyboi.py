@@ -18,9 +18,11 @@ async def number(ctx):
 	Scamlist = open('Scamlist.lst', 'r')
 	Numbers = Scamlist.read().splitlines()
 	print(Numbers)
-	#TODO: CHANGE TO DM
 	random.seed()
-	Numbers[random.randint]
+	RandNum = Numbers[random.randint(0,len(Numbers-1))]
+	#TODO: CHANGE TO DM
+	await bot.say('{} try: {}'.format(ctx.message.author.mention,RandNum))
+
 
 
 @bot.command(pass_context=True)
